@@ -5,6 +5,21 @@ const AddUser = () => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
+
+        const user = { name, email };
+
+        //send data to the server
+        fetch("http://localhost:5000/user", {
+            method: "POST",
+            headers: {
+                "content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data)
+            })
     }
     return (
         <div>
